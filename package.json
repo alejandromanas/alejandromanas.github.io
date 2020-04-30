@@ -4,18 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp"
+    "dev": "gulp",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "author": "Nathan Randecker",
   "license": "ISC",
   "dependencies": {
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.26.6",
     "gulp": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^3.0.1",
     "gulp-imagemin": "^5.0.3",
     "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.1"
-  }
+    "gulp-uglify": "^3.0.1",
+    "snyk": "^1.315.1"
+  },
+  "snyk": true
 }

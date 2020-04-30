@@ -7,7 +7,7 @@ url: "localhost:3000" # the base hostname & protocol for your site e.g. http://w
 # User settings
 username: Alejandro Mañas
 user_description: In the last ten years I have worked as a Business Intelligence consultant for companies in different sectors of activity (healthcare, hotels, beverage bottler, footwear manufacturing, legal assistance services). Some time ago, I decided to give my career a boost by delving into analytical skills. I discovered the potential of data analysis-oriented programming languages (R & Python) and the great possibilities of using machine learning techniques
-user_title: Data Scientist and Business Intelligence Consultant
+user_title: Data scientist & Business Intelligence Consultant
 email: ajmanasla@gmail.com
 twitter_username: alejandromanas5
 github_username:  alejandromanas
