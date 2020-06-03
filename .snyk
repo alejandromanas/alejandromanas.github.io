@@ -31,6 +31,8 @@ patch:
   SNYK-JS-LODASH-567746:
     - browser-sync > easy-extender > lodash:
         patched: '2020-05-01T04:26:06.765Z'
+    - gulp-sass > lodash:
+        patched: '2020-05-16T04:25:49.130Z'
   'npm:ms:20170412':
     - browser-sync > resp-modifier > debug > ms:
         patched: '2020-05-01T04:26:06.765Z'
