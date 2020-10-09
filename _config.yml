@@ -2,7 +2,7 @@
 title: A blog about datascience and python & R programming
 description: A blog about datasience and python & R programming
 # baseurl: "/particle" # the subpath of your site, e.g. /blog
-url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+url: "https://alejandromanas.github.io" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
 username: Alejandro Mañas
