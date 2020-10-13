@@ -4,7 +4,7 @@
 					<head>
 						<meta charset="UTF-8">
 						
-						<title>Consume HANA Cloud data from python</title>
+						<title>Consume SAP HANA Cloud data from python</title>
 					</head>
 					<body>
 						<div class="exported-note"><div class="exported-note-title">Consume HANA Cloud data from python</div>
@@ -363,7 +363,7 @@
 		}
 	</style><div id="rendered-md"><img src="/assets/img/hana_from_python.png" alt="372d521b13cd4f34fd84c0093a981224.png" width="436" height="445" class="jop-noMdConv"/>
 <br>
-<p>The goal is to shows a way to consume HANA Cloud data from a python session executed from my laptop.</p>
+<p>The goal is to shows a way to consume SAP HANA Cloud data from a python session executed from my laptop.</p>
 <p>The steps I am going to perform are:</p>
 <ol>
 <li>Generate a test data set in SAP HANA Cloud and configure the HANA instance</li>
@@ -371,8 +371,8 @@
 <li>Create a connection from python</li>
 </ol>
 <br>
-<p><strong>1- Generate a data set in HANA Cloud and configure the HANA instance</strong></p>
-<p>First i access to my instance in HANA Cloud and, using SAP HANA Database Explorer, launch a script for data generation. The script generate HOTEL scheme and all tables that we are going to fill in (Hotel, customer, city, reservation)</p>
+<p><strong>1- Generate a data set in SAP HANA Cloud and configure the HANA instance</strong></p>
+<p>First i access to my instance in SAP HANA Cloud, using SAP HANA Database Explorer, and launch a script in order to generate test data. The script generates HOTEL scheme and all tables that we are going to fill in (Hotel, customer, city, reservation)</p>
   <div class="images-center">
 		<img src="/assets/img/hana_from_python_1.png" alt="hana_from_python_1.png" width="951" height="509" class="jop-noMdConv"/>
   </div>
@@ -388,16 +388,16 @@
 <br>
 <br>
 <p><strong>3- Create a connection from Python</strong></p>
-<p>I open a Spyder session and test the connection with SAP HANA cloud</p>
+<p>I open a Spyder session and test the connection with SAP HANA cloud using "hdcli".</p>
 <p><img src="/assets/img/hana_from_python_6.png" alt="hana_from_python_6.png"></p>
 <p>The conection parameters for a trial SAP HANA Cloud account are:</p>
 <p>HANA_address = '<a data-from-md  title='http://acXXXX.hana.trial-eu10.hanacloud.ondemand.com' href='http://acXXXX.hana.trial-eu10.hanacloud.ondemand.com' type=''>acXXXX.hana.trial-eu10.hanacloud.ondemand.com</a>'</p>
 <p>HANA_port = '443'</p>
 <p>HANA_user = 'DBADMIN'</p>
 <p>HANA_password = 'XXXX'</p>
-<p>I reconnect again and execute a SQL script in order to check received data from reservation table</p>
+<p>I reconnect again and execute a SQL script in order to check received data from reservation table... and voilà!</p>
 <p><img src="/assets/img/hana_from_python_7.png" alt="hana_from_python_7"></p>
-<p>After connecting to the HANA cloud and importing data, any kind of machine learning technique could be used in Spyder (or in any other Python IDE).</p>
+<p>After connecting to SAP HANA cloud and importing data, any kind of machine learning techniques could be used in Spyder (or in any other python IDE).</p>
 <br>
 <p>I hope it will be useful for you and thanks for sharing!</p>
 <br>
