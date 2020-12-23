@@ -442,9 +442,9 @@ df_remote = dataframe.create_dataframe_from_pandas(cc1,df_pandas,table_name = 'H
 <span class="hljs-comment"># Pandas dataframe is loaded on HANA Table</span>
 df_remote = dataframe.create_dataframe_from_pandas(cc1,df_pandas,table_name = <span class="hljs-string">&#x27;HR_ATTRITION&#x27;</span>, schema=<span class="hljs-string">&#x27;PAL&#x27;</span>,force=<span class="hljs-literal">True</span>)</code></pre></div>
 <p>Se muestra la información de la tabla generada en HANA</p>
-<p><img src="_resources/260df22317a0445ba5d189469d5a9b53.png" alt="0dc6c140467e7ae8e5b43faa1ac841ea.png"></p>
+<p><img src="/assets/img/page_hr_retention/260df22317a0445ba5d189469d5a9b53.png" alt="0dc6c140467e7ae8e5b43faa1ac841ea.png"></p>
 <p>La caracteristica 'ATTRITION' indica si el empleado dejó la empresa (16,1%)</p>
-<p><img src="_resources/b06100b82f4a489c807f80049dcc2377.png" alt="0bec49b0485132df0d0c02d48389df80.png"></p>
+<p><img src="/assets/img/page_hr_retention/b06100b82f4a489c807f80049dcc2377.png" alt="0bec49b0485132df0d0c02d48389df80.png"></p>
 <h1 id="entrenamiento-del-modelo">Entrenamiento del modelo</h1>
 <p>Dividimos los datos en dos grupos: entrenamiento y test</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```">#data partition (70% train, 30% test)
@@ -588,7 +588,7 @@ MODEL_SCHEMA = <span class="hljs-string">&#x27;MODEL_STORAGE&#x27;</span>
 model_storage = ModelStorage(connection_context=cc, schema=MODEL_SCHEMA)
 rfc.name = <span class="hljs-string">&#x27;RandomForest Classifier 1&#x27;</span>
 model_storage.save_model(model=rfc,if_exists = <span class="hljs-string">&#x27;replace&#x27;</span>)</code></pre></div>
-<p><img src="_resources/6938f7ea68f44a3ba8c8ea2f4ae92ea9.png" alt="e16c1e931710725be9b57185fbdde914.png"></p>
+<p><img src="/assets/img/page_hr_retention/6938f7ea68f44a3ba8c8ea2f4ae92ea9.png" alt="e16c1e931710725be9b57185fbdde914.png"></p>
 <p>Realizamos la predicción y la guardamos en una tabla en SAP HANA</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```"># Prediction
 out = rfc.predict(data=df_remote,
@@ -605,7 +605,7 @@ out = rfc.predict(data=df_remote,
 <span class="hljs-comment"># Save prediction on HANA Table</span>
 pd_out = out.collect()
 dataframe.create_dataframe_from_pandas(cc2,pd_out,table_name = <span class="hljs-string">&#x27;HR_ATTRITION_PRED&#x27;</span>, schema=<span class="hljs-string">&#x27;PAL&#x27;</span>,force=<span class="hljs-literal">True</span>)</code></pre></div>
-<p><img src="_resources/851d67a53ceb497896496fc0f2363ea1.png" alt="915f73787356d7a12f2eb33af1a95b94.png"></p>
+<p><img src="/assets/img/page_hr_retention/851d67a53ceb497896496fc0f2363ea1.png" alt="915f73787356d7a12f2eb33af1a95b94.png"></p>
 <h1 id="creacion-de-la-aplicacion-web">Creación de la aplicación web</h1>
 <p>Por defecto, HANA XSA permite desarrollar aplicaciones Java y NodeJS.Tambien es posible desplegar aplicaciones web en python generando un 'runtime' python utilizando un buildpack creado por SAP.</p>
 <p><img src="_resources/9b9fdb55be7543bf935e375ca2f4b596.png" alt="ee7adbb8aa9b7ce26c2672bf4254f55a.png"></p>
