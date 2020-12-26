@@ -617,7 +617,7 @@ dataframe.create_dataframe_from_pandas(cc2,pd_out,table_name = <span class="hljs
 <br>
 <h1 id="creacion-de-la-aplicacion-web">Creación de la aplicación web</h1>
 <p>Por defecto, HANA XSA permite desarrollar aplicaciones Java y NodeJS.Tambien es posible desplegar aplicaciones web en python generando un 'runtime' python utilizando un buildpack creado por SAP.</p>
-<p><img src="_resources/9b9fdb55be7543bf935e375ca2f4b596.png" alt="ee7adbb8aa9b7ce26c2672bf4254f55a.png" width="964" height="506"></p>
+<p><img src="/assets/img/page_hr_retention/9b9fdb55be7543bf935e375ca2f4b596.png" alt="9b9fdb55be7543bf935e375ca2f4b596.png"width="964" height="506"></p>
 <p>Una vez entrenado el modelo, he generado la apllicación web usando streamlit. Esta libreria de python es muy recomendable y permite generar aplicaciones web de machine learning de forma sencilla y en pocas lineas de codigo.</p>
 <p>Para que la aplicación vaya mas rápido he cachea la conexión a HANA y la descarga del modelo entenado previamente. Despues de descargar el modelo, se realiza la predicción en función de los valores que el usuario ha seleccionado por pantalla.</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```">import streamlit as st
@@ -869,6 +869,11 @@ left_column, right_column = st.beta_columns(<span class="hljs-number">2</span>)
         st.success(<span class="hljs-string">&#x27;Attention, the employee could leave the company :(&#x27;</span>)
     <span class="hljs-keyword">else</span>:
         st.success(<span class="hljs-string">&#x27;The employee will remain within the company :) &#x27;</span>)</code></pre></div>
+<br>
+<p>I hope it will be useful for you and thanks for sharing!</p>
+<br>
+<hr>
+<a class="project-link" href="https://alejandromanas.github.io/">Home</a>
 </div></div>
 					</body>
 				</html>
