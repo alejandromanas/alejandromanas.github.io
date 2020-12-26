@@ -376,6 +376,7 @@
 <p><a data-from-md  title='IBM HR attrition' href='https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset' type=''>https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset</a></p>
 <p>Dicho dataset incluye información sobre unos 1500 empleados y 35 características entre las que destacan sueldo, edad, sexo, nivel educativo, años en la compañia, puesto en la empresa y un indicador que muestra si el empleado abandonó o no la empresa.</p>
 <p>Cargamos el fichero de datos desde un repositorio de github y se procesa la información</p>
+<br>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```">import pandas as pd
 
 # Load data from my github public repository
@@ -415,6 +416,7 @@ df_pandas.insert(<span class="hljs-number">0</span>, <span class="hljs-string">&
 
 <span class="hljs-comment"># Drop columns with one value or useless</span>
 df_pandas = df_pandas.drop([<span class="hljs-string">&quot;OVER18&quot;</span>,<span class="hljs-string">&quot;EMPLOYEECOUNT&quot;</span>,<span class="hljs-string">&quot;EMPLOYEENUMBER&quot;</span>,<span class="hljs-string">&quot;STANDARDHOURS&quot;</span>],axis=<span class="hljs-number">1</span>)</code></pre></div>
+<br>
 <p>Nos conectamos a SAP HANA y cargamos los datos en una tabla para procesar los datos en el servidor</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```"># HANA Connection function
 def HanaConn(url,port,usr,pwd):
@@ -441,10 +443,13 @@ df_remote = dataframe.create_dataframe_from_pandas(cc1,df_pandas,table_name = 'H
 
 <span class="hljs-comment"># Pandas dataframe is loaded on HANA Table</span>
 df_remote = dataframe.create_dataframe_from_pandas(cc1,df_pandas,table_name = <span class="hljs-string">&#x27;HR_ATTRITION&#x27;</span>, schema=<span class="hljs-string">&#x27;PAL&#x27;</span>,force=<span class="hljs-literal">True</span>)</code></pre></div>
+<br>
 <p>Se muestra la información de la tabla generada en HANA</p>
-<p><img src="/assets/img/page_hr_retention/260df22317a0445ba5d189469d5a9b53.png" alt="0dc6c140467e7ae8e5b43faa1ac841ea.png"></p>
+<p><img src="/assets/img/page_hr_retention/260df22317a0445ba5d189469d5a9b53.png" alt="0dc6c140467e7ae8e5b43faa1ac841ea.png"width="964" height="506"></p>
+<br>
 <p>La caracteristica 'ATTRITION' indica si el empleado dejó la empresa (16,1%)</p>
-<p><img src="/assets/img/page_hr_retention/b06100b82f4a489c807f80049dcc2377.png" alt="0bec49b0485132df0d0c02d48389df80.png"></p>
+<p><img src="/assets/img/page_hr_retention/b06100b82f4a489c807f80049dcc2377.png" alt="0bec49b0485132df0d0c02d48389df80.png"width="964" height="506"></p>
+<br>
 <h1 id="entrenamiento-del-modelo">Entrenamiento del modelo</h1>
 <p>Dividimos los datos en dos grupos: entrenamiento y test</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```">#data partition (70% train, 30% test)
@@ -462,6 +467,7 @@ df_train, df_test, df_ignore = partition.train_test_val_split(data = df_remote,
 
 print(<span class="hljs-string">&#x27;train num entries:&#x27;</span>,df_train.count())
 print(<span class="hljs-string">&#x27;train num entries:&#x27;</span>,df_test.count())</code></pre></div>
+<br>
 <p>Entrenamos el modelo (random forest)</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```"># RandomForestClassifier
 
@@ -578,6 +584,7 @@ categorical_variable= [<span class="hljs-string">&#x27;EDUCATION&#x27;</span>]
     <span class="hljs-keyword">return</span> rfc
 
 rfc = f_RandomForestClassifier(df_train, key, label,features)</code></pre></div>
+<br>
 <p>Guardamos el modelo entrenado en SAP HANA</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```"># Creating an instance of ModelStorage
 MODEL_SCHEMA = 'MODEL_STORAGE'
@@ -588,7 +595,8 @@ MODEL_SCHEMA = <span class="hljs-string">&#x27;MODEL_STORAGE&#x27;</span>
 model_storage = ModelStorage(connection_context=cc, schema=MODEL_SCHEMA)
 rfc.name = <span class="hljs-string">&#x27;RandomForest Classifier 1&#x27;</span>
 model_storage.save_model(model=rfc,if_exists = <span class="hljs-string">&#x27;replace&#x27;</span>)</code></pre></div>
-<p><img src="/assets/img/page_hr_retention/6938f7ea68f44a3ba8c8ea2f4ae92ea9.png" alt="e16c1e931710725be9b57185fbdde914.png"></p>
+<p><img src="/assets/img/page_hr_retention/6938f7ea68f44a3ba8c8ea2f4ae92ea9.png" alt="e16c1e931710725be9b57185fbdde914.png" width="964" height="506"></p>
+<br>
 <p>Realizamos la predicción y la guardamos en una tabla en SAP HANA</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```"># Prediction
 out = rfc.predict(data=df_remote,
@@ -605,10 +613,11 @@ out = rfc.predict(data=df_remote,
 <span class="hljs-comment"># Save prediction on HANA Table</span>
 pd_out = out.collect()
 dataframe.create_dataframe_from_pandas(cc2,pd_out,table_name = <span class="hljs-string">&#x27;HR_ATTRITION_PRED&#x27;</span>, schema=<span class="hljs-string">&#x27;PAL&#x27;</span>,force=<span class="hljs-literal">True</span>)</code></pre></div>
-<p><img src="/assets/img/page_hr_retention/851d67a53ceb497896496fc0f2363ea1.png" alt="915f73787356d7a12f2eb33af1a95b94.png"></p>
+<p><img src="/assets/img/page_hr_retention/851d67a53ceb497896496fc0f2363ea1.png" alt="915f73787356d7a12f2eb33af1a95b94.png" width="964" height="506"></p>
+<br>
 <h1 id="creacion-de-la-aplicacion-web">Creación de la aplicación web</h1>
 <p>Por defecto, HANA XSA permite desarrollar aplicaciones Java y NodeJS.Tambien es posible desplegar aplicaciones web en python generando un 'runtime' python utilizando un buildpack creado por SAP.</p>
-<p><img src="_resources/9b9fdb55be7543bf935e375ca2f4b596.png" alt="ee7adbb8aa9b7ce26c2672bf4254f55a.png"></p>
+<p><img src="_resources/9b9fdb55be7543bf935e375ca2f4b596.png" alt="ee7adbb8aa9b7ce26c2672bf4254f55a.png" width="964" height="506"></p>
 <p>Una vez entrenado el modelo, he generado la apllicación web usando streamlit. Esta libreria de python es muy recomendable y permite generar aplicaciones web de machine learning de forma sencilla y en pocas lineas de codigo.</p>
 <p>Para que la aplicación vaya mas rápido he cachea la conexión a HANA y la descarga del modelo entenado previamente. Despues de descargar el modelo, se realiza la predicción en función de los valores que el usuario ha seleccionado por pantalla.</p>
 <div class="joplin-editable"><pre class="joplin-source" data-joplin-language="python" data-joplin-source-open="```python&#10;" data-joplin-source-close="&#10;```">import streamlit as st
