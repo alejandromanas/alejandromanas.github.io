@@ -14,7 +14,7 @@ github_username:  alejandromanas
 
 # Google-analytics
 google-analytics:
-  id: ""
+  id: "G-4GX0180ZZW"
 
 exclude: ['package.json', 'src' , 'node_modules']
 
