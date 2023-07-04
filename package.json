@@ -19,7 +19,7 @@
     "gulp-plumber": "^1.2.1",
     "gulp-sass": "^5.0.0",
     "gulp-uglify": "^3.0.2",
-    "snyk": "^1.399.1"
+    "snyk": "^1.685.0"
   },
   "snyk": true
 }
